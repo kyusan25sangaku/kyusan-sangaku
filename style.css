@@ -1,0 +1,577 @@
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI",
+              "Hiragino Kaku Gothic ProN",
+              "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: #111;
+  background: #f4f4f4;
+}
+
+/* ===== Splash ===== */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.splash-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  max-width: 92vw;
+}
+
+/* 初期状態：ロゴ・文字は見えない（body.is-readyでアニメ開始） */
+.splash-logo {
+  width: clamp(84px, 12vw, 140px);
+  height: auto;
+  filter: invert(1); /* 黒ロゴ前提 */
+  opacity: 0;
+  transform: translateX(26px);
+}
+
+.splash-text {
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+
+.splash-text .line1 {
+  font-size: clamp(28px, 4.5vw, 54px);
+  font-weight: 800;
+  opacity: 0;
+  transform: translateY(6px);
+  white-space: nowrap;
+}
+
+.splash-text .line2 {
+  margin-top: 10px;
+  font-size: clamp(36px, 6vw, 66px);
+  font-weight: 900;
+  opacity: 0;
+  transform: translateY(6px);
+  white-space: nowrap;
+}
+
+/* ===== Animations (確実に body.is-ready の時だけ走る) ===== */
+body.is-ready .splash-logo {
+  animation: logoSlideIn 950ms cubic-bezier(.2,.9,.2,1) forwards;
+  animation-delay: 200ms;
+}
+
+body.is-ready .splash-text .line1 {
+  animation: textIn 650ms ease forwards;
+  animation-delay: 650ms;
+}
+
+body.is-ready .splash-text .line2 {
+  animation: textIn 650ms ease forwards;
+  animation-delay: 820ms;
+}
+
+/* じわっとフェードアウト */
+body.is-ready .splash {
+  animation: splashFadeOut 1600ms ease forwards;
+  animation-delay: 2400ms;
+}
+
+@keyframes logoSlideIn {
+  to { opacity: 1; transform: translateX(-26px); }
+}
+
+@keyframes textIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* displayは使わない（安定） */
+@keyframes splashFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* ===== Main Page ===== */
+.page {
+  min-height: 100%;
+  padding: 24px 16px 64px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.page.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.page.is-shown {
+  visibility: visible;
+  opacity: 1;
+  animation: pageSoftIn 650ms ease both;
+}
+
+@keyframes pageSoftIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Layout (仮) ===== */
+.hero {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin-top: 8px;
+}
+
+.hero h1 { margin: 0 0 6px; font-size: 28px; }
+.hero p  { margin: 0; color: #444; }
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.card h2 { margin: 0 0 8px; font-size: 18px; }
+.card p  { margin: 0; color: #333; }
+/* ===== Main Content (追加) ===== */
+:root{
+  --bg: #f4f4f4;
+  --card: #ffffff;
+  --ink: #111;
+  --muted: #444;
+  --line: rgba(0,0,0,0.12);
+  --accent: #1f3b2c; /* 山岳っぽい深緑 */
+  --accent2: #0b0b0b;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Top bar */
+.topbar{
+  background: var(--card);
+  border-radius: 16px;
+  margin: 14px auto 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  padding: 14px 14px;
+}
+
+.topbar-logo{
+  width: 44px;
+  height: auto;
+}
+
+.topbar-title .school{
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.topbar-title .club{
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  font-size: 22px;
+  margin-top: 2px;
+}
+
+/* Color block divider */
+.divider-block{
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #2f5a42, #476b55);
+  opacity: 0.95;
+  margin: 12px 4px 18px;
+}
+
+/* Photos */
+.section{
+  margin: 0 auto;
+}
+
+/* ===== Photos (3枚：縦長 + 白ライン区切り + 角あり) ===== */
+.photos-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;                 /* ラインをきれいに出すため */
+  border: 10px solid #fff;/* 外枠も白にしたいなら */
+  background: #fff;       /* 縦ラインの色 */
+}
+
+.photo{
+  margin: 0;
+  border-radius: 0;       /* 角あり */
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: none;       /* パネル感重視なら無しがそれっぽい */
+  position: relative;
+}
+
+/* 縦の白ライン（2枚目と3枚目の左側に線を出す） */
+.photo:nth-child(n+2){
+  border-left: 10px solid #fff;
+}
+
+.photo img{
+  display: block;
+  width: 100%;
+  height: 420px;          /* 縦長にする高さ（好きに調整OK） */
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* line */
+.line{
+  border: none;
+  height: 1px;
+  background: var(--line);
+  margin: 18px 0 22px;
+}
+
+/* Content grid */
+.content-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.stack{
+  display:flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card2{
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.card2 h2{
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.card2 ul{
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--ink);
+}
+
+.card2 li{
+  margin: 8px 0;
+  color: var(--ink);
+}
+
+.place{
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Voice */
+.voice{
+  display:flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.voice-photo{
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  overflow:hidden;
+  background:#ddd;
+  flex: 0 0 auto;
+}
+
+.voice-photo img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.voice-text .quote{
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.voice-text .by{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Instagram */
+.insta{
+  display:flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.insta-photo{
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  overflow:hidden;
+  background:#ddd;
+  flex: 0 0 auto;
+}
+
+.insta-photo img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.insta-text p{
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.btn{
+  display:inline-block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration:none;
+  font-weight: 800;
+}
+
+.btn:hover{
+  filter: brightness(1.05);
+}
+
+.hint{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Footer */
+.footer{
+  margin-top: 18px;
+  padding: 18px 0 30px;
+  text-align:center;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .photos-grid{
+    grid-template-columns: 1fr;
+  }
+  .photo img{
+    height: 240px;
+  }
+  .content-grid{
+    grid-template-columns: 1fr;
+  }
+  .insta{
+    align-items: flex-start;
+  }
+}
+/* ===== Background Slideshow ===== */
+.bg-slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;               /* 中身より後ろ */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-slideshow span {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: bgFade 64s infinite;
+}
+
+/* 8枚分の遅延（8秒×8枚 = 64秒） */
+.bg-slideshow span:nth-child(1) { animation-delay: 0s; }
+.bg-slideshow span:nth-child(2) { animation-delay: 8s; }
+.bg-slideshow span:nth-child(3) { animation-delay: 16s; }
+.bg-slideshow span:nth-child(4) { animation-delay: 24s; }
+.bg-slideshow span:nth-child(5) { animation-delay: 32s; }
+.bg-slideshow span:nth-child(6) { animation-delay: 40s; }
+.bg-slideshow span:nth-child(7) { animation-delay: 48s; }
+.bg-slideshow span:nth-child(8) { animation-delay: 56s; }
+
+/* じわっと切り替わる */
+@keyframes bgFade {
+  0%   { opacity: 0; }
+  5%   { opacity: 0.04; }   /* ← ここが「薄さ」 */
+  20%  { opacity: 0.20; }
+  25%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ===== Activity "詳しく" (Accordion) ===== */
+.card2-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.activity-list{
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.more{
+  position: relative;
+}
+
+.more > summary{
+  list-style: none;
+}
+.more > summary::-webkit-details-marker{
+  display:none;
+}
+
+.more-btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(31,59,44,0.10);
+  color: #1f3b2c;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border: 1px solid rgba(31,59,44,0.20);
+}
+
+.more-btn::after{
+  content:"▾";
+  font-size: 14px;
+  transform: translateY(-1px);
+}
+
+.more[open] .more-btn::after{
+  content:"▴";
+}
+
+.more-body{
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.more-block + .more-block{
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.more-body h3{
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.more-body p{
+  margin: 0;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* じわっと開く感じ（対応ブラウザのみ） */
+@media (prefers-reduced-motion: no-preference){
+  .more-body{
+    animation: moreIn 220ms ease both;
+  }
+  @keyframes moreIn{
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+/* ===== "いいところ"：詳しく内の写真3枚 ===== */
+.good-list{
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.more-photos{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.more-photo{
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ddd;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.more-photo img{
+  display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+}
+
+/* スマホでは縦に並べる */
+@media (max-width: 700px){
+  .more-photos{
+    grid-template-columns: 1fr;
+  }
+  .more-photo img{
+    height: 180px;
+  }
+}
+@media (max-width: 900px){
+  .photos-grid{
+    grid-template-columns: 1fr;
+    border: 10px solid #fff;
+  }
+
+  .photo:nth-child(n+2){
+    border-left: 0;
+    border-top: 10px solid #fff; /* 縦並びのときは横ライン */
+  }
+
+  .photo img{
+    height: 260px;
+  }
+}
