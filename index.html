@@ -21,25 +21,23 @@
   <!-- Main content（重要：最初は is-hidden） -->
   <main class="page is-hidden" id="page">
     <!-- Background Slideshow -->
-<div class="bg-slideshow" aria-hidden="true">
-  <span style="background-image:url('bg1.jpg')"></span>
-  <span style="background-image:url('bg2.jpg')"></span>
-  <span style="background-image:url('bg3.jpg')"></span>
-  <span style="background-image:url('bg4.jpg')"></span>
-  <span style="background-image:url('bg5.jpg')"></span>
-  <span style="background-image:url('bg6.jpg')"></span>
-  <span style="background-image:url('bg7.jpg')"></span>
-  <span style="background-image:url('bg8.jpg')"></span>
-</div>
+    <div class="bg-slideshow" aria-hidden="true">
+      <span style="background-image:url('bg1.jpg')"></span>
+      <span style="background-image:url('bg2.jpg')"></span>
+      <span style="background-image:url('bg3.jpg')"></span>
+      <span style="background-image:url('bg4.jpg')"></span>
+      <span style="background-image:url('bg5.jpg')"></span>
+      <span style="background-image:url('bg6.jpg')"></span>
+      <span style="background-image:url('bg7.jpg')"></span>
+      <span style="background-image:url('bg8.jpg')"></span>
+    </div>
 
-    <!-- ［一番上］ロゴ＋タイトル -->
-    <header class="topbar">
-      <div class="topbar-inner">
-        <img class="topbar-logo" src="rogo.png" alt="九州産業大学 山岳部 ロゴ" />
-        <div class="topbar-title">
-          <div class="school">九州産業大学</div>
-          <div class="club">山岳部</div>
-        </div>
+    <!-- ✅［一番上］バナー（左・中央・右に装飾画像3枚） -->
+    <header class="banner" aria-label="ヘッダーバナー">
+      <div class="banner-deco" aria-hidden="true">
+        <img src="deco-left.png" alt="" />
+        <img src="deco-center.png" alt="" />
+        <img src="deco-right.png" alt="" />
       </div>
     </header>
 
@@ -69,87 +67,46 @@
         <!-- 左 -->
         <div class="stack">
           <section class="card2">
-  <div class="card2-head">
-    <h2>山岳部のいいところ</h2>
-
-    <details class="more">
-      <summary class="more-btn">詳しく</summary>
-
-      <div class="more-body">
-        <!-- 写真3枚 -->
-        <div class="more-photos">
-          <figure class="more-photo">
-            <img src="good1.png" alt="山岳部の魅力 写真1" />
-          </figure>
-          <figure class="more-photo">
-            <img src="good2.png" alt="山岳部の魅力 写真2" />
-          </figure>
-          <figure class="more-photo">
-            <img src="good3.png" alt="山岳部の魅力 写真3" />
-          </figure>
-        </div>
-
-        <!-- 詳細テキスト -->
-        <div class="more-block">
-          <h3>新しい視点が見つかる！</h3>
-          <p>普段の生活では気づけない景色や考え方に出会えます。自然の中での経験は、視野を広げるきっかけになります。</p>
-        </div>
-
-        <div class="more-block">
-          <h3>心身ともに成長できる！</h3>
-          <p>体力だけでなく、準備・計画・継続力も身につきます。「できた」の積み重ねが自信になります。</p>
-        </div>
-
-        <div class="more-block">
-          <h3>コミュニケーションや生きていく術を体験できる！</h3>
-          <p>チームで行動するからこそ、声かけ・判断・役割分担が自然に身につきます。安全第一で行動します。</p>
-        </div>
-      </div>
-    </details>
-  </div>
-
-  <!-- まず見せたい要点（簡潔） -->
-  <ul class="good-list">
-    <li>新しい視点が見つかる！</li>
-    <li>心身ともに成長できる！</li>
-    <li>コミュニケーションや生きていく術を体験できる！</li>
-  </ul>
-</section>
-
+            <h2>山岳部のいいところ</h2>
+            <ul>
+              <li>新しい視点が見つかる！</li>
+              <li>心身ともに成長できる！</li>
+              <li>コミュニケーション能力や生きていく術を習得できる！</li>
+            </ul>
+          </section>
 
           <section class="card2">
-  <div class="card2-head">
-    <h2>活動内容</h2>
+            <div class="card2-head">
+              <h2>活動内容</h2>
 
-    <details class="more">
-      <summary class="more-btn">詳しく</summary>
+              <details class="more">
+                <summary class="more-btn">詳しく</summary>
 
-      <div class="more-body">
-        <div class="more-block">
-          <h3>日帰り登山（月1〜2回）</h3>
-          <p>福岡県内を中心に、季節や隊員に合わせてコースを選びます。初心者向けから段階的にレベルアップできます！</p>
-        </div>
+                <div class="more-body">
+                  <div class="more-block">
+                    <h3>日帰り登山（月1〜2回）</h3>
+                    <p>福岡県内を中心に、季節や隊員に合わせてコースを選びます。初心者向けから段階的にレベルアップできます！</p>
+                  </div>
 
-        <div class="more-block">
-          <h3>基礎訓練（月1回）</h3>
-          <p>歩き方・装備の扱い・地図読みなど、安全に登るための基礎を練習します。</p>
-        </div>
+                  <div class="more-block">
+                    <h3>基礎訓練（月1回）</h3>
+                    <p>歩き方・装備の扱い・地図読みなど、安全に登るための基礎を練習します。</p>
+                  </div>
 
-        <div class="more-block">
-          <h3>夏季合宿</h3>
-          <p>数日間の合宿を行い、山での生活や行動を体験します（天候や安全を最優先で実施）。</p>
-        </div>
-      </div>
-    </details>
-  </div>
+                  <div class="more-block">
+                    <h3>夏季合宿</h3>
+                    <p>数日間（１泊２日）の合宿を行い、山での生活や行動を体験します（天候や安全を最優先で実施）。</p>
+                  </div>
+                </div>
+              </details>
+            </div>
 
-  <ul class="activity-list">
-    <li>月に1回〜2回 日帰り登山</li>
-    <li>基礎訓練（月に1回）</li>
-    <li>夏季合宿</li>
-  </ul>
-</section>
-
+            <ul class="activity-list">
+              <li>月に1回〜2回 日帰り登山</li>
+              <li>基礎訓練（月に1回）</li>
+              <li>夏季合宿</li>
+            </ul>
+          </section>
 
           <section class="card2">
             <h2>活動場所</h2>
