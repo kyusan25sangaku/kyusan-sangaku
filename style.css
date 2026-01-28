@@ -575,3 +575,33 @@ body.is-ready .splash {
     height: 260px;
   }
 }
+@media (max-width: 900px){
+  .photos-grid{
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px;
+    border: none;
+    background: transparent;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .photo{
+    min-width: 80%;
+    flex: 0 0 auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+
+    scroll-snap-align: center;
+  }
+
+  .photo:nth-child(n+2){
+    border-left: none;
+  }
+
+  .photo img{
+    height: 220px;   /* 横長で見やすい */
+  }
+}
