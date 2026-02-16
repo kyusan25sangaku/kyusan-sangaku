@@ -133,14 +133,17 @@
             <h2>インスタグラム</h2>
             <div class="insta">
               <div class="insta-photo">
-                <img src="instagram.png" alt="Instagramの画像" />
+                <img src="insta.png" alt="Instagramの画像" />
               </div>
               <div class="insta-text">
                 <p>最新の活動はInstagramで発信しています。</p>
-                <a class="btn" href="#" target="_blank" rel="noopener">Instagramを見る</a>
+                <a class="btn" href="https://www.instagram.com/sangaku20/?hl=da" target="_blank" rel="noopener">Instagramを見る</a>
               </div>
             </div>
           </section>
+          <button class="btn ghost" onclick="openGallery()">
+        活動風景を見る
+      </button>
         </div>
       </div>
     </section>
@@ -148,6 +151,59 @@
     <footer class="footer">
       <small>© 九州産業大学 山岳部</small>
     </footer>
+    
+
+<!-- モーダル本体 -->
+<div id="galleryModal" class="gallery-modal">
+
+  <!-- 背景クリックでも閉じる -->
+  <div class="gallery-overlay" onclick="closeGallery()"></div>
+
+  <!-- 中身 -->
+  <div class="gallery-content">
+
+    <!-- ×ボタン -->
+    <button class="gallery-close" onclick="closeGallery()">×</button>
+
+    <!-- 画像6枚 -->
+    <div class="gallery-grid">
+
+  <figure class="gallery-item">
+    <img src="act1.png" alt="">
+    <figcaption>九産大山岳部名物　立花山登山</figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="act2.png" alt="">
+    <figcaption>由布岳冬季登山　３月でも霜が残ってる</figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="act3.png" alt="">
+    <figcaption>ブリーフィング</figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="act4.png" alt="">
+    <figcaption>実は右のくぼみは湖（九重中岳御池）</figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="act5.png" alt="">
+    <figcaption>夏季合宿</figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="act6.png" alt="">
+    <figcaption>山頂からの景色</figcaption>
+  </figure>
+
+</div>
+
+
+  </div>
+</div>
+
   </main>
 
   <script>
@@ -178,6 +234,14 @@
         }
       }, 6000);
     })();
+function openGallery(){
+  document.getElementById("galleryModal").style.display="block";
+}
+
+function closeGallery(){
+  document.getElementById("galleryModal").style.display="none";
+}
+
   </script>
 </body>
 </html>
